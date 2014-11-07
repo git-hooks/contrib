@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+function run_test {
+    jshint "${1}"
+}
+
+case "${1}" in
+    --about )
+        echo "Introduction of this hook"
+        ;;
+    --install )
+        echo "Installing jshint"
+        npm install -g jshint
+        ;;
+    * )
+        for file in `git diff-index --cached --name-only HEAD` ; do
+            filename=$(basename "$file")
+            extension="${filename##*.}"
+            if [ "$extension" = "js" ] || [ "$extension" = "json" ] ; then
+                run_test "${file}"
+            fi
+        done
+        ;;
+esac

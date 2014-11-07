@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+function run_test {
+    echo "Do real test"
+}
+
+case "${1}" in
+    --about )
+        echo "Introduction of this hook"
+        ;;
+    --install )
+        echo "Installing hook"
+        # blan blan blan
+        ;;
+    * )
+        run_test
+        ;;
+esac
