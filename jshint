@@ -2,7 +2,7 @@
 set -e
 
 function run_test {
-    jshint "${1}"
+    git cat-file blob :"${1}" | jshint --filename "${1}" -
 }
 
 case "${1}" in
